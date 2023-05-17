@@ -44,7 +44,6 @@ pipeline {
                         withCredentials([string(credentialsId: 'poc283.blackduck.synopsys.com', variable: 'BRIDGE_BLACKDUCK_TOKEN')]) {
                             script {
                                 status = sh returnStatus: true, script: """
-                                    env | sort
                                     curl -fLsS -o bridge.zip $BRIDGECLI_LINUX64 && unzip -qo -d $WORKSPACE_TMP bridge.zip && rm -f bridge.zip
                                     $WORKSPACE_TMP/synopsys-bridge --verbose --stage blackduck \
                                         blackduck.url=$BLACKDUCK_URL \
@@ -70,7 +69,6 @@ pipeline {
                                          string(credentialsId: 'github-pat', variable: 'GITHUB_TOKEN')]) {
                             script {
                                 status = sh returnStatus: true, script: """
-                                    env | sort
                                     curl -fLsS -o bridge.zip $BRIDGECLI_LINUX64 && unzip -qo -d $WORKSPACE_TMP bridge.zip && rm -f bridge.zip
                                     $WORKSPACE_TMP/synopsys-bridge --verbose --stage blackduck \
                                         blackduck.url=$BLACKDUCK_URL \
@@ -94,7 +92,6 @@ pipeline {
                         withCredentials([string(credentialsId: 'sipse.polaris.synopsys.com', variable: 'POLARIS_ACCESS_TOKEN')]) {
                             script {
                                 status = sh returnStatus: true, script: """
-                                    env | sort
                                     curl -fLOsS $POLARIS_SERVER_URL/api/tools/polaris_cli-linux64.zip
                                     unzip -qo -d $WORKSPACE_TMP -jo polaris_cli-linux64.zip && rm -f polaris_cli-linux64.zip
                                     $WORKSPACE_TMP/polaris --co project.name=$PROJECT analyze -w
@@ -113,7 +110,6 @@ pipeline {
                         withCredentials([string(credentialsId: 'sipse.polaris.synopsys.com', variable: 'POLARIS_ACCESS_TOKEN')]) {
                             script {
                                 status = sh returnStatus: true, script: """
-                                    env | sort
                                     curl -fLOsS $POLARIS_SERVER_URL/api/tools/polaris_cli-linux64.zip
                                     unzip -qo -d $WORKSPACE_TMP -jo polaris_cli-linux64.zip && rm -f polaris_cli-linux64.zip
                                     $WORKSPACE_TMP/polaris --co project.name=$PROJECT analyze -w
