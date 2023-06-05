@@ -63,6 +63,7 @@ pipeline {
                         DETECT_PROJECT_NAME = "$PROJECT"
                         DETECT_PROJECT_VERSION_NAME = "$CHANGE_TARGET"
                         DETECT_CODE_LOCATION_NAME = "$PROJECT-$CHANGE_TARGET"
+                        BRIDGE_ENVIRONMENT_SCAN_PULL = 'true'
                     }
                     steps {
                         withCredentials([string(credentialsId: 'poc283.blackduck.synopsys.com', variable: 'BRIDGE_BLACKDUCK_TOKEN'),
